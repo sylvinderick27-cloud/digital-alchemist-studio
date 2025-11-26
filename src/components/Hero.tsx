@@ -31,7 +31,7 @@ export const Hero = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
             >
-              YOUR NAME
+              SYLVIN DERICK
             </motion.h1>
             <motion.div
               className="flex items-center gap-4 ml-2"
