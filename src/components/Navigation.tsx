@@ -14,7 +14,7 @@ export const Navigation = () => {
           className="text-2xl font-black tracking-tighter text-black"
           whileHover={{ scale: 1.05 }}
         >
-          YN
+          SD
         </motion.div>
 
         <div className="hidden md:flex gap-8 items-center">
