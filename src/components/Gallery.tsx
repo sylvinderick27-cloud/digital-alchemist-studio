@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { ProjectCard } from "./ProjectCard";
 import digitalTwinImg from "@/assets/project-digital-twin.jpg";
@@ -7,8 +6,6 @@ import characterImg from "@/assets/project-character.jpg";
 import scannerImg from "@/assets/project-scanner.jpg";
 import environmentImg from "@/assets/project-environment.jpg";
 import animationImg from "@/assets/project-animation.jpg";
-
-const categories = ["All", "Digital Twin", "Hard Surface", "Characters", "Environments", "Animation"];
 
 const projects = [
   {
@@ -52,15 +49,9 @@ const projects = [
 ];
 
 export const Gallery = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const filteredProjects =
-    activeCategory === "All"
-      ? projects
-      : projects.filter((p) => p.category === activeCategory);
 
   return (
-    <section className="py-32 px-6 bg-black text-white">
+    <section id="work" className="py-32 px-6 bg-black text-white">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <motion.div
@@ -71,37 +62,9 @@ export const Gallery = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-huge font-black mb-4">
-            Digital Craft in Motion.
+            Latest Works
           </h2>
           <div className="h-2 w-40 bg-white rounded-full" />
-        </motion.div>
-
-        {/* Category filters */}
-        <motion.div
-          className="flex flex-wrap gap-3 mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`px-6 py-3 font-bold text-sm uppercase tracking-wider rounded-full transition-all ${
-                activeCategory === category
-                  ? "bg-white text-black"
-                  : "bg-white/10 text-white hover:bg-white/20"
-              }`}
-              style={
-                activeCategory === category
-                  ? { boxShadow: "var(--shadow-medium)" }
-                  : { boxShadow: "var(--shadow-soft)" }
-              }
-            >
-              {category}
-            </button>
-          ))}
         </motion.div>
 
         {/* Projects grid */}
@@ -109,7 +72,7 @@ export const Gallery = () => {
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
           layout
         >
-          {filteredProjects.map((project, index) => (
+          {projects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 40 }}

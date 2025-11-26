@@ -21,10 +21,6 @@ export const DossierCard = () => {
     <section className="py-32 px-6 bg-black text-white">
       <div className="max-w-6xl mx-auto">
         <motion.div
-          className="rounded-3xl p-8 md:p-12 relative bg-neutral-900"
-          style={{
-            boxShadow: "var(--shadow-strong)",
-          }}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -121,14 +117,6 @@ export const DossierCard = () => {
             </div>
           </div>
 
-          {/* Stamp effect */}
-          <motion.div
-            className="absolute top-8 right-8 text-white text-6xl font-black rotate-12 opacity-5"
-            animate={{ rotate: [12, 15, 12] }}
-            transition={{ duration: 4, repeat: Infinity }}
-          >
-            APPROVED
-          </motion.div>
         </motion.div>
       </div>
     </section>

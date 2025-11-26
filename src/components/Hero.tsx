@@ -5,21 +5,6 @@ import { Button } from "@/components/ui/button";
 export const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-6 py-20 bg-white">
-      {/* Floating glass element */}
-      <motion.div
-        className="absolute top-1/4 right-1/4 w-96 h-96 glass-blur rounded-[4rem] border border-black/10"
-        animate={{
-          y: [0, -30, 0],
-          rotate: [12, 15, 12],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        style={{ boxShadow: "var(--shadow-soft)" }}
-      />
-
       <div className="max-w-7xl w-full relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
