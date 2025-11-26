@@ -92,6 +92,10 @@ export default {
           "0%": { transform: "translateX(-100%)" },
           "100%": { transform: "translateX(0)" },
         },
+        "radius-expand": {
+          "0%": { borderRadius: "1.5rem" },
+          "100%": { borderRadius: "3rem" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -99,6 +103,7 @@ export default {
         "float": "float 6s ease-in-out infinite",
         "fade-in": "fade-in 0.6s ease-out",
         "slide-in": "slide-in 0.8s ease-out",
+        "radius-expand": "radius-expand 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards",
       },
     },
   },

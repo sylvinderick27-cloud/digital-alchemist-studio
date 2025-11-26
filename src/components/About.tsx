@@ -10,7 +10,7 @@ export const About = () => {
   ];
 
   return (
-    <section className="py-32 px-6">
+    <section className="py-32 px-6 bg-black text-white">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -21,7 +21,7 @@ export const About = () => {
           <h2 className="text-huge font-black mb-12 leading-tight">
             I build the digital version
             <br />
-            <span className="text-accent">before the real one exists.</span>
+            <span className="opacity-50">before the real one exists.</span>
           </h2>
 
           <div className="grid md:grid-cols-5 gap-8 mt-20">
@@ -34,17 +34,17 @@ export const About = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <div className="text-7xl font-black text-accent/20 mb-4">
+                <div className="text-7xl font-black text-white/10 mb-4">
                   {item.step}
                 </div>
                 <h3 className="text-2xl font-black mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground font-medium">
+                <p className="text-sm text-white/60 font-medium">
                   {item.desc}
                 </p>
 
                 {/* Connecting line */}
                 {index < process.length - 1 && (
-                  <div className="hidden md:block absolute top-12 left-full w-full h-0.5 bg-accent/30" />
+                  <div className="hidden md:block absolute top-12 left-full w-full h-0.5 bg-white/20 rounded-full" />
                 )}
               </motion.div>
             ))}

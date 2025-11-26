@@ -60,7 +60,7 @@ export const Gallery = () => {
       : projects.filter((p) => p.category === activeCategory);
 
   return (
-    <section className="py-32 px-6">
+    <section className="py-32 px-6 bg-black text-white">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <motion.div
@@ -73,7 +73,7 @@ export const Gallery = () => {
           <h2 className="text-huge font-black mb-4">
             Digital Craft in Motion.
           </h2>
-          <div className="h-2 w-40 bg-accent" />
+          <div className="h-2 w-40 bg-white rounded-full" />
         </motion.div>
 
         {/* Category filters */}
@@ -88,11 +88,16 @@ export const Gallery = () => {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-6 py-3 font-bold text-sm uppercase tracking-wider border-2 transition-all ${
+              className={`px-6 py-3 font-bold text-sm uppercase tracking-wider rounded-full transition-all ${
                 activeCategory === category
-                  ? "bg-accent text-accent-foreground border-accent"
-                  : "bg-transparent text-foreground border-foreground hover:bg-foreground hover:text-background"
+                  ? "bg-white text-black"
+                  : "bg-white/10 text-white hover:bg-white/20"
               }`}
+              style={
+                activeCategory === category
+                  ? { boxShadow: "var(--shadow-medium)" }
+                  : { boxShadow: "var(--shadow-soft)" }
+              }
             >
               {category}
             </button>
