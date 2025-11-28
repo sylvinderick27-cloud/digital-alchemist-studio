@@ -7,7 +7,7 @@ export const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-6 py-20 bg-white">
        <motion.div
-        className="absolute top-1/4 right-1/4 w-96 h-96 glass-blur rounded-[4rem] border border-black/10"
+        className="absolute top-1/4 right-1/4 w-96 h-96 glass-blur"
         animate={{
           y: [0, -30, 0],
           rotate: [12, 15, 12],
@@ -17,9 +17,8 @@ export const Hero = () => {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        style={{ boxShadow: "var(--shadow-soft)" }}
       >
-         <img src={img} alt="" />
+         <img src={img} alt="" className="rounded-[4rem]" style={{ boxShadow: "var(--shadow-soft)", height: "100%", obejctFit: "cover" }}/>
        </motion.div>
       <div className="max-w-7xl w-full relative z-10">
         <motion.div
@@ -33,6 +32,7 @@ export const Hero = () => {
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
+              style={{textShadow: "0px 1px 1px #fff"}}
             >
               SYLVIN DERICK
             </motion.h1>
