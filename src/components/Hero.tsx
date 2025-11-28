@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import img from "../assets/img.png";
 
 export const Hero = () => {
   return (
@@ -17,7 +18,9 @@ export const Hero = () => {
           ease: "easeInOut",
         }}
         style={{ boxShadow: "var(--shadow-soft)" }}
-      />
+      >
+         <img src={img} alt="" />
+       </motion.div>
       <div className="max-w-7xl w-full relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
