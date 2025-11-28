@@ -6,8 +6,8 @@ import img from "../assets/img.png";
 export const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-6 py-20 bg-white">
-       <motion.div
-        className="absolute top-1/4 right-1/4 w-96 h-96 glass-blur"
+      <motion.div
+        className="absolute top-1/4 right-1/4 w-96 h-97 glass-blur"
         animate={{
           y: [0, -30, 0],
           rotate: [12, 15, 12],
@@ -18,8 +18,8 @@ export const Hero = () => {
           ease: "easeInOut",
         }}
       >
-         <img src={img} alt="" className="rounded-[4rem]" style={{ boxShadow: "var(--shadow-soft)", height: "100%", obejctFit: "cover" }}/>
-       </motion.div>
+        <img src={img} alt="" className="rounded-[4rem]" style={{ boxShadow: "var(--shadow-soft)", height: "100%", width: "100%", objectFit: "cover" }} />
+      </motion.div>
       <div className="max-w-7xl w-full relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -32,7 +32,7 @@ export const Hero = () => {
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
-              style={{textShadow: "0px 1px 1px #fff"}}
+              style={{ textShadow: "0px 1px 1px #fff" }}
             >
               SYLVIN DERICK
             </motion.h1>
