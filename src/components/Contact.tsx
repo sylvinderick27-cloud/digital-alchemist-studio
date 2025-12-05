@@ -59,7 +59,7 @@ export const Contact = () => {
 
           <div className="mt-20 pt-12 border-t border-white/10">
             <p className="text-sm text-white/50 font-bold">
-              © 2024 YOUR NAME — Digital Twin Specialist
+              © 2024 SYLVIN DERICK — Digital Twin Specialist
             </p>
           </div>
         </motion.div>

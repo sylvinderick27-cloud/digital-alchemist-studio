@@ -1,12 +1,10 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import img from "../assets/img.png";
 
 export const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-6 py-20 bg-white">
-      <motion.div
+      {/* <motion.div
         className="absolute top-1/4 right-1/4 w-96 h-97 glass-blur"
         animate={{
           y: [0, -30, 0],
@@ -19,7 +17,7 @@ export const Hero = () => {
         }}
       >
         <img src={img} alt="" className="rounded-[4rem]" style={{ boxShadow: "var(--shadow-soft)", height: "100%", width: "100%", objectFit: "cover" }} />
-      </motion.div>
+      </motion.div> */}
       <div className="max-w-7xl w-full relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -44,7 +42,7 @@ export const Hero = () => {
             >
               <div className="h-1 w-24 bg-black rounded-full" />
               <p className="text-2xl md:text-4xl font-bold tracking-tight text-black/60">
-                3D Generalist & Digital Twin Artist
+                3D Designer | Digital Twin Technical Artist
               </p>
             </motion.div>
           </div>
@@ -55,9 +53,7 @@ export const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
           >
-            Crafting photorealistic digital twins and cinematic Blender assets for
-            next-generation experiences. From hard-surface to organic, from scan to
-            final render.
+            Crafting realistic real-time models and immersive digital twin experiences.
           </motion.p>
 
           <motion.div
