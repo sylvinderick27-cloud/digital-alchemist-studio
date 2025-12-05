@@ -1,10 +1,9 @@
 import { motion } from "framer-motion";
-import { Mail, Linkedin, ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Mail, ArrowRight } from "lucide-react";
 
 export const Contact = () => {
   return (
-    <section className="py-32 px-6 bg-black text-white">
+    <section id="contact" className="py-20 md:py-32 px-4 md:px-6 bg-black text-white">
       <div className="max-w-4xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -12,56 +11,45 @@ export const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-huge font-black mb-8">
-            Let's build something
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <Mail className="h-5 w-5 md:h-6 md:w-6 text-white/50" />
+            <span className="text-xs md:text-sm font-bold uppercase tracking-widest text-white/50">
+              Get in Touch
+            </span>
+          </div>
+          
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-black mb-6 md:mb-8">
+            Let's Create
             <br />
-            <span className="opacity-50">unreal.</span>
+            <span className="text-white/30">Together</span>
           </h2>
-
-          <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto">
-            Available for freelance projects, full-time opportunities, and
-            collaborative ventures in 3D visualization.
+          
+          <p className="text-base md:text-lg text-white/50 mb-10 md:mb-12 max-w-md mx-auto">
+            Have a project in mind? I'd love to hear about it. Let's discuss how we can bring your vision to life.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-4 mt-12">
-            <motion.a
-              href="mailto:your.email@example.com"
-              className="px-8 py-4 bg-white text-black font-bold text-lg rounded-full transition-all duration-300"
-              style={{ boxShadow: "var(--shadow-medium)" }}
-              whileHover={{ scale: 1.05, boxShadow: "var(--shadow-strong)" }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Email Me
-            </motion.a>
-            <motion.a
-              href="https://linkedin.com/in/yourprofile"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-4 bg-white/10 text-white font-bold text-lg rounded-full transition-all duration-300"
-              style={{ boxShadow: "var(--shadow-soft)" }}
-              whileHover={{ scale: 1.05, boxShadow: "var(--shadow-medium)" }}
-              whileTap={{ scale: 0.95 }}
-            >
-              LinkedIn
-            </motion.a>
-            <motion.a
-              href="https://artstation.com/yourprofile"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-4 bg-white/10 text-white font-bold text-lg rounded-full transition-all duration-300"
-              style={{ boxShadow: "var(--shadow-soft)" }}
-              whileHover={{ scale: 1.05, boxShadow: "var(--shadow-medium)" }}
-              whileTap={{ scale: 0.95 }}
-            >
-              ArtStation
-            </motion.a>
-          </div>
+          <motion.a
+            href="mailto:hello@sylvinderick.com"
+            className="inline-flex items-center gap-2 px-8 md:px-10 py-4 md:py-5 bg-white text-black font-bold rounded-full text-sm md:text-base"
+            style={{ boxShadow: "var(--shadow-medium)" }}
+            whileHover={{ scale: 1.02, boxShadow: "var(--shadow-strong)" }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Start a Conversation
+            <ArrowRight className="h-4 w-4 md:h-5 md:w-5" />
+          </motion.a>
+        </motion.div>
 
-          <div className="mt-20 pt-12 border-t border-white/10">
-            <p className="text-sm text-white/50 font-bold">
-              © 2024 SYLVIN DERICK — Digital Twin Specialist
-            </p>
-          </div>
+        {/* Footer */}
+        <motion.div
+          className="mt-20 md:mt-32 pt-8 border-t border-white/10"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
+          <p className="text-xs md:text-sm text-white/30">
+            © 2024 Sylvin Derick. All rights reserved.
+          </p>
         </motion.div>
       </div>
     </section>

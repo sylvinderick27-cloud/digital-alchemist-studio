@@ -18,7 +18,7 @@ export const DossierCard = () => {
   ];
 
   return (
-    <section className="py-32 px-6 bg-black text-white">
+    <section id="skills" className="py-20 md:py-32 px-4 md:px-6 bg-black text-white">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -26,97 +26,83 @@ export const DossierCard = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          {/* Dossier header */}
-          <div className="flex justify-between items-start mb-12 pb-6 border-b border-white/10">
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-12 md:mb-16 pb-6 border-b border-white/10">
             <div>
-              <div className="flex items-center gap-4 mb-2">
-                <div className="h-3 w-3 bg-white rounded-full" />
-                <span className="text-xs font-bold uppercase tracking-widest opacity-70">
-                  Classified Personnel File
+              <div className="flex items-center gap-3 mb-3">
+                <div className="h-2 w-2 bg-white rounded-full" />
+                <span className="text-xs font-bold uppercase tracking-widest opacity-60">
+                  Personnel File
                 </span>
               </div>
-              <h2 className="text-5xl md:text-6xl font-black">
+              <h2 className="text-4xl md:text-6xl font-black">
                 FIELD SPECIALIST
               </h2>
             </div>
-            <div className="text-right">
-              <div className="text-xs font-bold opacity-50">
-                FILE ID: DT-2024-001
-              </div>
+            <div className="text-left md:text-right mt-4 md:mt-0 opacity-50">
               <div className="text-xs font-bold">
-                CLEARANCE: OMEGA
+                FILE ID: DT-2024-001
               </div>
             </div>
           </div>
 
-          {/* Main content grid */}
-          <div className="grid md:grid-cols-2 gap-12">
+          {/* Main content - Single column layout with personality first */}
+          <div className="space-y-16">
+            {/* Personality traits - Now first */}
+            <div>
+              <h3 className="text-xl md:text-2xl font-black mb-6 flex items-center gap-3">
+                <div className="h-1 w-6 bg-white rounded-full" />
+                PERSONALITY PROFILE
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {traits.map((trait, index) => (
+                  <motion.span
+                    key={trait}
+                    className="px-4 py-2 rounded-full bg-white/5 text-sm md:text-base font-bold"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                  >
+                    {trait}
+                  </motion.span>
+                ))}
+              </div>
+            </div>
+
             {/* Skills section */}
             <div>
-              <h3 className="text-2xl font-black mb-6 flex items-center gap-3">
-                <div className="h-1 w-8 bg-white rounded-full" />
+              <h3 className="text-xl md:text-2xl font-black mb-6 flex items-center gap-3">
+                <div className="h-1 w-6 bg-white rounded-full" />
                 TECHNICAL ARSENAL
               </h3>
-              <div className="space-y-6">
-                {skills.map((skill) => (
-                  <div key={skill.category}>
-                    <div className="text-xs font-bold uppercase tracking-wider mb-2 opacity-70">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                {skills.map((skill, skillIndex) => (
+                  <motion.div 
+                    key={skill.category}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: skillIndex * 0.1 }}
+                  >
+                    <div className="text-xs font-bold uppercase tracking-wider mb-3 opacity-50">
                       {skill.category}
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {skill.items.map((item) => (
                         <span
                           key={item}
-                          className="px-3 py-1 rounded-full bg-white/10 text-sm font-bold"
+                          className="px-3 py-1.5 rounded-full bg-white/10 text-sm font-medium"
                         >
                           {item}
                         </span>
                       ))}
                     </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Personality traits */}
-            <div>
-              <h3 className="text-2xl font-black mb-6 flex items-center gap-3">
-                <div className="h-1 w-8 bg-white rounded-full" />
-                PERSONALITY PROFILE
-              </h3>
-              <div className="space-y-3 mb-8">
-                {traits.map((trait, index) => (
-                  <motion.div
-                    key={trait}
-                    className="flex items-center gap-3"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                  >
-                    <div className="h-2 w-2 bg-white rounded-full" />
-                    <span className="font-bold text-lg">{trait}</span>
                   </motion.div>
                 ))}
               </div>
-
-              {/* Avatar placeholder */}
-              <div className="rounded-2xl bg-white/5 p-4 mt-8" style={{ boxShadow: "var(--shadow-soft)" }}>
-                <div className="aspect-square bg-white/10 rounded-xl flex items-center justify-center">
-                  <span className="text-6xl">👤</span>
-                </div>
-                <div className="mt-4 text-center">
-                  <div className="text-xs font-bold uppercase opacity-70">
-                    Subject Profile
-                  </div>
-                  <div className="text-sm font-bold mt-1">
-                    3D Visualization Specialist
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
-
         </motion.div>
       </div>
     </section>
