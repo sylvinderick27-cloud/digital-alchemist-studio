@@ -1,18 +1,42 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
+
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  imageUrl: string;
+  size: string;
+}
 
 interface ProjectPreviewProps {
   isOpen: boolean;
   onClose: () => void;
-  project: {
-    title: string;
-    category: string;
-    imageUrl: string;
-  } | null;
+  project: Project | null;
+  projects: Project[];
+  onNavigate: (project: Project) => void;
 }
 
-export const ProjectPreview = ({ isOpen, onClose, project }: ProjectPreviewProps) => {
+export const ProjectPreview = ({ isOpen, onClose, project, projects, onNavigate }: ProjectPreviewProps) => {
   if (!project) return null;
+
+  const currentIndex = projects.findIndex(p => p.id === project.id);
+  const hasPrev = currentIndex > 0;
+  const hasNext = currentIndex < projects.length - 1;
+
+  const goToPrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (hasPrev) {
+      onNavigate(projects[currentIndex - 1]);
+    }
+  };
+
+  const goToNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (hasNext) {
+      onNavigate(projects[currentIndex + 1]);
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -31,6 +55,36 @@ export const ProjectPreview = ({ isOpen, onClose, project }: ProjectPreviewProps
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           />
+
+          {/* Previous Button */}
+          {hasPrev && (
+            <motion.button
+              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 p-3 md:p-4 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-20"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={goToPrev}
+            >
+              <ChevronLeft className="h-6 w-6 md:h-8 md:w-8" />
+            </motion.button>
+          )}
+
+          {/* Next Button */}
+          {hasNext && (
+            <motion.button
+              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 p-3 md:p-4 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-20"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={goToNext}
+            >
+              <ChevronRight className="h-6 w-6 md:h-8 md:w-8" />
+            </motion.button>
+          )}
 
           {/* Content */}
           <motion.div
@@ -53,10 +107,14 @@ export const ProjectPreview = ({ isOpen, onClose, project }: ProjectPreviewProps
 
             {/* Image */}
             <div className="rounded-2xl md:rounded-3xl overflow-hidden" style={{ boxShadow: "var(--shadow-strong)" }}>
-              <img
+              <motion.img
+                key={project.id}
                 src={project.imageUrl}
                 alt={project.title}
                 className="w-full h-auto max-h-[70vh] object-contain bg-black"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
               />
             </div>
 
@@ -73,6 +131,9 @@ export const ProjectPreview = ({ isOpen, onClose, project }: ProjectPreviewProps
               <h3 className="text-2xl md:text-4xl font-black text-white mt-2">
                 {project.title}
               </h3>
+              <p className="text-white/40 text-sm mt-2">
+                {currentIndex + 1} / {projects.length}
+              </p>
             </motion.div>
           </motion.div>
         </motion.div>
