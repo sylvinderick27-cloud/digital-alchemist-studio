@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ProjectCard } from "./ProjectCard";
 import digitalTwinImg from "@/assets/project-digital-twin.jpg";
@@ -48,7 +49,15 @@ const projects = [
   },
 ];
 
+const INITIAL_COUNT = 3;
+
 export const Gallery = () => {
+  const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
+  const hasMore = visibleCount < projects.length;
+
+  const loadMore = () => {
+    setVisibleCount((prev) => Math.min(prev + 3, projects.length));
+  };
 
   return (
     <section id="work" className="py-32 px-6 bg-black text-white">
@@ -72,7 +81,7 @@ export const Gallery = () => {
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
           layout
         >
-          {projects.map((project, index) => (
+          {projects.slice(0, visibleCount).map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 40 }}
@@ -85,6 +94,23 @@ export const Gallery = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Load More Button */}
+        {hasMore && (
+          <motion.div
+            className="flex justify-center mt-16"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            <button
+              onClick={loadMore}
+              className="px-10 py-4 bg-white/5 text-white font-bold rounded-2xl hover:bg-white/10 transition-all duration-300 hover:rounded-3xl"
+            >
+              Load More
+            </button>
+          </motion.div>
+        )}
       </div>
     </section>
   );
