@@ -8,7 +8,15 @@ import scannerImg from "@/assets/project-scanner.jpg";
 import environmentImg from "@/assets/project-environment.jpg";
 import animationImg from "@/assets/project-animation.jpg";
 
-const projects = [
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  imageUrl: string;
+  size: string;
+}
+
+const projects: Project[] = [
   {
     id: 1,
     title: "Architectural Digital Twin",
@@ -153,6 +161,8 @@ export const Gallery = () => {
         isOpen={!!selectedProject}
         onClose={() => setSelectedProject(null)}
         project={selectedProject}
+        projects={projects}
+        onNavigate={setSelectedProject}
       />
     </section>
   );
