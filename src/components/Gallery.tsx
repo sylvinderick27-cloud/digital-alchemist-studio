@@ -85,7 +85,7 @@ export const Gallery = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-huge font-black mb-4">
+          <h2 className="text-4 md:text-huge font-black mb-4">
             Latest Works
           </h2>
           <div className="h-1 md:h-2 w-24 md:w-40 bg-white rounded-full" />
