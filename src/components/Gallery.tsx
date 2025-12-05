@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ProjectCard } from "./ProjectCard";
+import { ProjectPreview } from "./ProjectPreview";
 import digitalTwinImg from "@/assets/project-digital-twin.jpg";
 import weaponImg from "@/assets/project-weapon.jpg";
 import characterImg from "@/assets/project-character.jpg";
@@ -14,104 +14,146 @@ const projects = [
     title: "Architectural Digital Twin",
     category: "Digital Twin",
     imageUrl: digitalTwinImg,
-    featured: true,
+    size: "large",
   },
   {
     id: 2,
     title: "Sci-Fi Weapon Asset",
     category: "Hard Surface",
     imageUrl: weaponImg,
+    size: "small",
   },
   {
     id: 3,
     title: "Character Portrait",
     category: "Characters",
     imageUrl: characterImg,
+    size: "medium",
   },
   {
     id: 4,
     title: "Industrial Scanner",
     category: "Digital Twin",
     imageUrl: scannerImg,
+    size: "small",
   },
   {
     id: 5,
     title: "Cyberpunk Environment",
     category: "Environments",
     imageUrl: environmentImg,
-    featured: true,
+    size: "large",
   },
   {
     id: 6,
     title: "Mechanical Rig",
     category: "Animation",
     imageUrl: animationImg,
+    size: "medium",
   },
 ];
 
-const INITIAL_COUNT = 3;
+const INITIAL_COUNT = 4;
 
 export const Gallery = () => {
   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
+  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
   const hasMore = visibleCount < projects.length;
 
   const loadMore = () => {
     setVisibleCount((prev) => Math.min(prev + 3, projects.length));
   };
 
+  const visibleProjects = projects.slice(0, visibleCount);
+
   return (
-    <section id="work" className="py-32 px-6 bg-black text-white">
+    <section id="work" className="py-20 md:py-32 px-4 md:px-6 bg-black text-white">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <motion.div
-          className="mb-20"
+          className="mb-12 md:mb-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-huge font-black mb-4">
+          <h2 className="text-4xl md:text-huge font-black mb-4">
             Latest Works
           </h2>
-          <div className="h-2 w-40 bg-white rounded-full" />
+          <div className="h-1 md:h-2 w-24 md:w-40 bg-white rounded-full" />
         </motion.div>
 
-        {/* Projects grid */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
-          layout
-        >
-          {projects.slice(0, visibleCount).map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              layout
-            >
-              <ProjectCard {...project} />
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Bento Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[150px] md:auto-rows-[200px]">
+          {visibleProjects.map((project, index) => {
+            const gridClass = 
+              project.size === "large" 
+                ? "col-span-2 row-span-2" 
+                : project.size === "medium" 
+                  ? "col-span-2 md:col-span-1 row-span-2" 
+                  : "col-span-1 row-span-1";
+
+            return (
+              <motion.div
+                key={project.id}
+                className={`group relative overflow-hidden rounded-2xl md:rounded-3xl cursor-pointer ${gridClass}`}
+                style={{ boxShadow: "var(--shadow-medium)" }}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ 
+                  y: -4,
+                  boxShadow: "var(--shadow-strong)",
+                }}
+                onClick={() => setSelectedProject(project)}
+              >
+                <motion.img
+                  src={project.imageUrl}
+                  alt={project.title}
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                />
+
+                {/* Info overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                    <span className="text-[10px] md:text-xs font-bold text-white/70 uppercase tracking-wider">
+                      {project.category}
+                    </span>
+                    <h3 className="text-sm md:text-xl font-bold text-white mt-1">
+                      {project.title}
+                    </h3>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
 
         {/* Load More Button */}
         {hasMore && (
           <motion.div
-            className="flex justify-center mt-16"
+            className="flex justify-center mt-12 md:mt-16"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
             <button
               onClick={loadMore}
-              className="px-10 py-4 bg-white/5 text-white font-bold rounded-2xl hover:bg-white/10 transition-all duration-300 hover:rounded-3xl"
+              className="px-8 md:px-10 py-3 md:py-4 bg-white/5 text-white font-bold rounded-2xl hover:bg-white/10 transition-all duration-300 hover:rounded-3xl text-sm md:text-base"
             >
               Load More
             </button>
           </motion.div>
         )}
       </div>
+
+      {/* Preview Modal */}
+      <ProjectPreview
+        isOpen={!!selectedProject}
+        onClose={() => setSelectedProject(null)}
+        project={selectedProject}
+      />
     </section>
   );
 };
