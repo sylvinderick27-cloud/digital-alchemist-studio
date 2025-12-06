@@ -1,22 +1,13 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ProjectPreview } from "./ProjectPreview";
-import img1 from "@/assets/renders/1.webp";
-import img2 from "@/assets/renders/2.webp";
-import img3 from "@/assets/renders/3.webp";
-import img4 from "@/assets/renders/4.webp";
-import img5 from "@/assets/renders/5.webp";
-import img6 from "@/assets/renders/6.webp";
-import img7 from "@/assets/renders/7.webp";
-import img8 from "@/assets/renders/8.webp";
-import img9 from "@/assets/renders/9.webp";
-import img10 from "@/assets/renders/10.webp";
-import img11 from "@/assets/renders/11.webp";
-import img12 from "@/assets/renders/12.webp";
-import img13 from "@/assets/renders/13.webp";
-import img14 from "@/assets/renders/14.webp";
-import img15 from "@/assets/renders/15.webp";
-import img16 from "@/assets/renders/16.webp";
+
+import image1 from "@/assets/project-animation.jpg";
+import image2 from "@/assets/project-character.jpg";
+import image3 from "@/assets/project-digital-twin.jpg";
+import image4 from "@/assets/project-environment.jpg";
+import image5 from "@/assets/project-scanner.jpg";
+import image6 from "@/assets/project-weapon.jpg";
 
 interface Project {
     id: number;
@@ -26,118 +17,163 @@ interface Project {
     size: string;
 }
 
+// const projects: Project[] = [
+//     {
+//         id: 1,
+//         title: "Architectural Digital Twin",
+//         category: "Digital Twin",
+//         imageUrl: img1,
+//         size: "large",
+//     },
+//     {
+//         id: 2,
+//         title: "Sci-Fi Weapon Asset",
+//         category: "Hard Surface",
+//         imageUrl: img2,
+//         size: "small",
+//     },
+//     {
+//         id: 3,
+//         title: "Character Portrait",
+//         category: "Characters",
+//         imageUrl: img3,
+//         size: "medium",
+//     },
+//     {
+//         id: 4,
+//         title: "Industrial Scanner",
+//         category: "Digital Twin",
+//         imageUrl: img4,
+//         size: "small",
+//     },
+//     {
+//         id: 5,
+//         title: "Cyberpunk Environment",
+//         category: "Environments",
+//         imageUrl: img5,
+//         size: "large",
+//     },
+//     {
+//         id: 6,
+//         title: "Mechanical Rig",
+//         category: "Animation",
+//         imageUrl: img6,
+//         size: "medium",
+//     },
+//     {
+//         id: 7,
+//         title: "Futuristic Drone Asset",
+//         category: "Hard Surface",
+//         imageUrl: img7,
+//         size: "small",
+//     },
+//     {
+//         id: 8,
+//         title: "Desert Outpost Environment",
+//         category: "Environments",
+//         imageUrl: img8,
+//         size: "medium",
+//     },
+//     {
+//         id: 9,
+//         title: "Creature Bust",
+//         category: "Characters",
+//         imageUrl: img9,
+//         size: "small",
+//     },
+//     {
+//         id: 10,
+//         title: "Sci-Fi Corridor",
+//         category: "Environments",
+//         imageUrl: img10,
+//         size: "large",
+//     },
+//     {
+//         id: 11,
+//         title: "Robot Concept Model",
+//         category: "Hard Surface",
+//         imageUrl: img11,
+//         size: "medium",
+//     },
+//     {
+//         id: 12,
+//         title: "Fantasy Character",
+//         category: "Characters",
+//         imageUrl: img12,
+//         size: "medium",
+//     },
+//     {
+//         id: 13,
+//         title: "City Digital Twin",
+//         category: "Digital Twin",
+//         imageUrl: img13,
+//         size: "large",
+//     },
+//     {
+//         id: 14,
+//         title: "Mech Suit",
+//         category: "Hard Surface",
+//         imageUrl: img14,
+//         size: "small",
+//     },
+//     {
+//         id: 15,
+//         title: "Urban Scene Render",
+//         category: "Environments",
+//         imageUrl: img15,
+//         size: "small",
+//     },
+//     {
+//         id: 16,
+//         title: "Engineering Component",
+//         category: "Digital Twin",
+//         imageUrl: img16,
+//         size: "large",
+//     },
+// ];
+
 const projects: Project[] = [
     {
         id: 1,
         title: "Architectural Digital Twin",
         category: "Digital Twin",
-        imageUrl: img1,
+        imageUrl: image3,
         size: "large",
     },
     {
         id: 2,
         title: "Sci-Fi Weapon Asset",
         category: "Hard Surface",
-        imageUrl: img2,
+        imageUrl: image6,
         size: "small",
     },
     {
         id: 3,
         title: "Character Portrait",
         category: "Characters",
-        imageUrl: img3,
+        imageUrl: image2,
         size: "medium",
     },
     {
         id: 4,
-        title: "Industrial Scanner",
-        category: "Digital Twin",
-        imageUrl: img4,
-        size: "small",
+        title: "Animation Reel",
+        category: "Animation",
+        imageUrl: image1,
+        size: "medium",
     },
     {
         id: 5,
-        title: "Cyberpunk Environment",
-        category: "Environments",
-        imageUrl: img5,
+        title: "Environment Concept",
+        category: "Environment",
+        imageUrl: image4,
         size: "large",
     },
     {
         id: 6,
-        title: "Mechanical Rig",
-        category: "Animation",
-        imageUrl: img6,
-        size: "medium",
-    },
-    {
-        id: 7,
-        title: "Futuristic Drone Asset",
-        category: "Hard Surface",
-        imageUrl: img7,
+        title: "Object Scanner Setup",
+        category: "Tech / Scanning",
+        imageUrl: image5,
         size: "small",
-    },
-    {
-        id: 8,
-        title: "Desert Outpost Environment",
-        category: "Environments",
-        imageUrl: img8,
-        size: "medium",
-    },
-    {
-        id: 9,
-        title: "Creature Bust",
-        category: "Characters",
-        imageUrl: img9,
-        size: "small",
-    },
-    {
-        id: 10,
-        title: "Sci-Fi Corridor",
-        category: "Environments",
-        imageUrl: img10,
-        size: "large",
-    },
-    {
-        id: 11,
-        title: "Robot Concept Model",
-        category: "Hard Surface",
-        imageUrl: img11,
-        size: "medium",
-    },
-    {
-        id: 12,
-        title: "Fantasy Character",
-        category: "Characters",
-        imageUrl: img12,
-        size: "medium",
-    },
-    {
-        id: 13,
-        title: "City Digital Twin",
-        category: "Digital Twin",
-        imageUrl: img13,
-        size: "large",
-    },
-    {
-        id: 14,
-        title: "Mech Suit",
-        category: "Hard Surface",
-        imageUrl: img14,
-        size: "small",
-    },
-    {
-        id: 15,
-        title: "Urban Scene Render",
-        category: "Environments",
-        imageUrl: img15,
-        size: "small",
-    },
-    {
-        id: 16,
-        title: "Engineering Component",
-        category: "Digital Twin",
-        imageUrl: img16,
-        size: "large",
     },
 ];
 
