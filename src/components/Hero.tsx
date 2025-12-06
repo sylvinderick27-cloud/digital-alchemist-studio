@@ -31,7 +31,7 @@ export const Hero = () => {
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
-              style={{ textShadow: "0px 1px 1px #fff", mix-blend-mode: exclusion }}
+              style={{ textShadow: "0px 1px 1px #fff" }}
             >
               SYLVIN DERICK
             </motion.h1>
