@@ -24,7 +24,7 @@ export const Navigation = () => {
   return (
     <>
       <motion.nav
-        className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-4 md:py-6 bg-white/90 backdrop-blur-sm"
+        className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-4 md:py-6 bg-black/90 backdrop-blur-sm"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -32,7 +32,7 @@ export const Navigation = () => {
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <motion.a
             href="#"
-            className="text-xl md:text-2xl font-black tracking-tighter text-black"
+            className="text-xl md:text-2xl font-black tracking-tighter text-white"
             whileHover={{ scale: 1.05 }}
             onClick={(e) => {
               e.preventDefault();
@@ -48,7 +48,7 @@ export const Navigation = () => {
               <motion.a
                 key={item.label}
                 href={item.href}
-                className="text-sm font-bold uppercase tracking-wider text-black hover:opacity-60 transition-opacity"
+                className="text-sm font-bold uppercase tracking-wider text-white hover:opacity-60 transition-opacity"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
@@ -61,7 +61,7 @@ export const Navigation = () => {
 
           {/* Mobile menu button */}
           <button 
-            className="md:hidden p-2 rounded-xl bg-black text-white"
+            className="md:hidden p-2 rounded-xl bg-white text-black"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -73,7 +73,7 @@ export const Navigation = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-white pt-24 px-6 md:hidden"
+            className="fixed inset-0 z-40 bg-black pt-24 px-6 md:hidden"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -84,7 +84,7 @@ export const Navigation = () => {
                 <motion.a
                   key={item.label}
                   href={item.href}
-                  className="text-3xl font-black text-black"
+                  className="text-3xl font-black text-white"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
