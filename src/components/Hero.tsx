@@ -1,24 +1,18 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
-import img from "@/assets/img.png";
+import heroImg from "@/assets/image.png";
 
 export const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-6 py-20 bg-white">
-      <motion.div
-        className="absolute top-1/4 right-1/4 w-96 h-97 glass-blur"
-        animate={{
-          y: [0, -30, 0],
-          rotate: [12, 15, 12],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      >
-        <img src={img} alt="" className="rounded-[4rem]" style={{ boxShadow: "var(--shadow-soft)", height: "100%", width: "100%", objectFit: "cover" }} />
-      </motion.div>
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-6 py-20">
+      {/* Background image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroImg})` }}
+      />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/70" />
+      
       <div className="max-w-7xl w-full relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -27,11 +21,10 @@ export const Hero = () => {
         >
           <div className="mb-8">
             <motion.h1
-              className="text-massive font-black tracking-tighter mb-2 text-black"
+              className="text-massive font-black tracking-tighter mb-2 text-white"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
-              style={{ textShadow: "0px 1px 1px #fff" }}
             >
               SYLVIN DERICK
             </motion.h1>
@@ -41,15 +34,15 @@ export const Hero = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.4 }}
             >
-              <div className="h-1 w-24 bg-black rounded-full" />
-              <p className="text-2xl md:text-4xl font-bold tracking-tight text-black/60">
+              <div className="h-1 w-24 bg-white rounded-full" />
+              <p className="text-2xl md:text-4xl font-bold tracking-tight text-white/60">
                 3D Designer | Digital Twin Technical Artist
               </p>
             </motion.div>
           </div>
 
           <motion.p
-            className="text-lg md:text-xl max-w-2xl mb-12 text-black/60 ml-2"
+            className="text-lg md:text-xl max-w-2xl mb-12 text-white/60 ml-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
@@ -65,7 +58,7 @@ export const Hero = () => {
           >
             <motion.a
               href="#work"
-              className="px-8 py-4 bg-black text-white font-bold text-lg rounded-full inline-flex items-center gap-2"
+              className="px-8 py-4 bg-white text-black font-bold text-lg rounded-full inline-flex items-center gap-2"
               style={{ boxShadow: "var(--shadow-medium)" }}
               whileHover={{ scale: 1.05, boxShadow: "var(--shadow-strong)" }}
               whileTap={{ scale: 0.95 }}
@@ -75,9 +68,8 @@ export const Hero = () => {
             </motion.a>
             <motion.a
               href="#"
-              className="px-8 py-4 bg-white text-black font-bold text-lg rounded-full inline-flex items-center gap-2 ring-2 ring-black ring-inset"
-              style={{ boxShadow: "var(--shadow-soft)" }}
-              whileHover={{ scale: 1.05, boxShadow: "var(--shadow-medium)" }}
+              className="px-8 py-4 bg-transparent text-white font-bold text-lg rounded-full inline-flex items-center gap-2 ring-2 ring-white ring-inset"
+              whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
               whileTap={{ scale: 0.95 }}
             >
               <Download className="h-5 w-5" />
@@ -88,7 +80,7 @@ export const Hero = () => {
       </div>
 
       {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/5 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/50 to-transparent" />
     </section>
   );
 };
