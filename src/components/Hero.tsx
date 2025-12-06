@@ -11,7 +11,7 @@ export const Hero = () => {
         style={{ backgroundImage: `url(${heroImg})` }}
       />
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/70" />
+      <div className="absolute inset-0 bg-black" />
       
       <div className="max-w-7xl w-full relative z-10">
         <motion.div
