@@ -71,7 +71,7 @@ export const Hero = () => {
               className="px-8 py-4 bg-transparent text-white font-bold text-lg rounded-full inline-flex items-center gap-2 ring-2 ring-white ring-inset"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              style={{ backgroundColor: "rgba(255,255,255)" }}
+              style={{ backgroundColor: "#000" }}
             >
               <Download className="h-5 w-5" />
               Download Resume
