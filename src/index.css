@@ -7,140 +7,145 @@ All colors MUST be HSL.
 */
 
 @layer base {
-  :root {
-    --background: 0 0% 97%;
-    --foreground: 0 0% 5%;
+    :root {
+        --background: 0 0% 97%;
+        --foreground: 0 0% 5%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 5%;
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 5%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 5%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 5%;
 
-    --primary: 0 0% 5%;
-    --primary-foreground: 0 0% 97%;
+        --primary: 0 0% 5%;
+        --primary-foreground: 0 0% 97%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 97%;
+        --secondary: 0 0% 15%;
+        --secondary-foreground: 0 0% 97%;
 
-    --muted: 0 0% 90%;
-    --muted-foreground: 0 0% 45%;
+        --muted: 0 0% 90%;
+        --muted-foreground: 0 0% 45%;
 
-    --accent: 0 0% 100%;
-    --accent-foreground: 0 0% 0%;
+        --accent: 0 0% 100%;
+        --accent-foreground: 0 0% 0%;
 
-    --destructive: 0 0% 20%;
-    --destructive-foreground: 0 0% 97%;
+        --destructive: 0 0% 20%;
+        --destructive-foreground: 0 0% 97%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 0 0% 0%;
+        --border: 0 0% 90%;
+        --input: 0 0% 90%;
+        --ring: 0 0% 0%;
 
-    --radius: 1.5rem;
-    
-    --shadow-soft: 0 4px 24px -2px rgba(0, 0, 0, 0.08);
-    --shadow-medium: 0 8px 40px -4px rgba(0, 0, 0, 0.12);
-    --shadow-strong: 0 16px 64px -8px rgba(0, 0, 0, 0.16);
+        --radius: 1.5rem;
 
-    --sidebar-background: 0 0% 98%;
+        --shadow-soft: 0 4px 24px -2px rgba(0, 0, 0, 0.08);
+        --shadow-medium: 0 8px 40px -4px rgba(0, 0, 0, 0.12);
+        --shadow-strong: 0 16px 64px -8px rgba(0, 0, 0, 0.16);
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+        --sidebar-background: 0 0% 98%;
 
-    --sidebar-primary: 240 5.9% 10%;
+        --sidebar-foreground: 240 5.3% 26.1%;
 
-    --sidebar-primary-foreground: 0 0% 98%;
+        --sidebar-primary: 240 5.9% 10%;
 
-    --sidebar-accent: 240 4.8% 95.9%;
+        --sidebar-primary-foreground: 0 0% 98%;
 
-    --sidebar-accent-foreground: 240 5.9% 10%;
+        --sidebar-accent: 240 4.8% 95.9%;
 
-    --sidebar-border: 220 13% 91%;
+        --sidebar-accent-foreground: 240 5.9% 10%;
 
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+        --sidebar-border: 220 13% 91%;
 
-  .dark {
-    --background: 0 0% 8%;
-    --foreground: 0 0% 95%;
+        --sidebar-ring: 217.2 91.2% 59.8%;
+    }
 
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 95%;
+    .dark {
+        --background: 0 0% 8%;
+        --foreground: 0 0% 95%;
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 95%;
+        --card: 0 0% 10%;
+        --card-foreground: 0 0% 95%;
 
-    --primary: 0 0% 95%;
-    --primary-foreground: 0 0% 8%;
+        --popover: 0 0% 10%;
+        --popover-foreground: 0 0% 95%;
 
-    --secondary: 0 0% 20%;
-    --secondary-foreground: 0 0% 95%;
+        --primary: 0 0% 95%;
+        --primary-foreground: 0 0% 8%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
+        --secondary: 0 0% 20%;
+        --secondary-foreground: 0 0% 95%;
 
-    --accent: 0 0% 100%;
-    --accent-foreground: 0 0% 0%;
+        --muted: 0 0% 15%;
+        --muted-foreground: 0 0% 60%;
 
-    --destructive: 0 0% 80%;
-    --destructive-foreground: 0 0% 10%;
+        --accent: 0 0% 100%;
+        --accent-foreground: 0 0% 0%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 15%;
-    --ring: 0 0% 100%;
-    
-    --shadow-soft: 0 4px 24px -2px rgba(0, 0, 0, 0.4);
-    --shadow-medium: 0 8px 40px -4px rgba(0, 0, 0, 0.5);
-    --shadow-strong: 0 16px 64px -8px rgba(0, 0, 0, 0.6);
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+        --destructive: 0 0% 80%;
+        --destructive-foreground: 0 0% 10%;
+
+        --border: 0 0% 20%;
+        --input: 0 0% 15%;
+        --ring: 0 0% 100%;
+
+        --shadow-soft: 0 4px 24px -2px rgba(0, 0, 0, 0.4);
+        --shadow-medium: 0 8px 40px -4px rgba(0, 0, 0, 0.5);
+        --shadow-strong: 0 16px 64px -8px rgba(0, 0, 0, 0.6);
+        --sidebar-background: 240 5.9% 10%;
+        --sidebar-foreground: 240 4.8% 95.9%;
+        --sidebar-primary: 224.3 76.3% 48%;
+        --sidebar-primary-foreground: 0 0% 100%;
+        --sidebar-accent: 240 3.7% 15.9%;
+        --sidebar-accent-foreground: 240 4.8% 95.9%;
+        --sidebar-border: 240 3.7% 15.9%;
+        --sidebar-ring: 217.2 91.2% 59.8%;
+    }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+    * {
+        @apply border-border;
+    }
 
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", sans-serif;
-    font-weight: 500;
-  }
+    body {
+        @apply bg-background text-foreground antialiased;
+        font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", sans-serif;
+        font-weight: 500;
+    }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: 800;
-    letter-spacing: -0.04em;
-    line-height: 0.9;
-  }
-
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 0.9;
+    }
 }
 
+
 @layer utilities {
-  .glass-blur {
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    background: rgba(255, 255, 255, 0.05);
-  }
+    .glass-blur {
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        background: rgba(255, 255, 255, 0.05);
+    }
 
-  .text-massive {
-    font-size: clamp(4rem, 15vw, 12rem);
-  }
+    .text-massive {
+        font-size: clamp(4rem, 15vw, 8rem);
+    }
 
-  .text-huge {
-    font-size: clamp(2.5rem, 8vw, 6rem);
-  }
+    .text-huge {
+        font-size: clamp(2.5rem, 8vw, 6rem);
+    }
 
-  .hover-lift {
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
+    .hover-lift {
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
 
-  .hover-lift:hover {
-    transform: translateY(-8px);
-  }
+    .hover-lift:hover {
+        transform: translateY(-8px);
+    }
 }

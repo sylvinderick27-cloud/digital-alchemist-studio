@@ -86,7 +86,7 @@ export const Gallery = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4 md:text-huge font-black mb-4">
-            Latest Works
+            Project Gallery
           </h2>
           <div className="h-1 md:h-2 w-24 md:w-40 bg-white rounded-full" />
         </motion.div>
