@@ -2,13 +2,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ProjectPreview } from "./ProjectPreview";
 
-import image1 from "@/assets/project-animation.jpg";
-import image2 from "@/assets/project-character.jpg";
-import image3 from "@/assets/project-digital-twin.jpg";
-import image4 from "@/assets/project-environment.jpg";
-import image5 from "@/assets/project-scanner.jpg";
-import image6 from "@/assets/project-weapon.jpg";
-
 interface Project {
     id: number;
     title: string;
@@ -17,165 +10,75 @@ interface Project {
     size: string;
 }
 
-// const projects: Project[] = [
-//     {
-//         id: 1,
-//         title: "Architectural Digital Twin",
-//         category: "Digital Twin",
-//         imageUrl: img1,
-//         size: "large",
-//     },
-//     {
-//         id: 2,
-//         title: "Sci-Fi Weapon Asset",
-//         category: "Hard Surface",
-//         imageUrl: img2,
-//         size: "small",
-//     },
-//     {
-//         id: 3,
-//         title: "Character Portrait",
-//         category: "Characters",
-//         imageUrl: img3,
-//         size: "medium",
-//     },
-//     {
-//         id: 4,
-//         title: "Industrial Scanner",
-//         category: "Digital Twin",
-//         imageUrl: img4,
-//         size: "small",
-//     },
-//     {
-//         id: 5,
-//         title: "Cyberpunk Environment",
-//         category: "Environments",
-//         imageUrl: img5,
-//         size: "large",
-//     },
-//     {
-//         id: 6,
-//         title: "Mechanical Rig",
-//         category: "Animation",
-//         imageUrl: img6,
-//         size: "medium",
-//     },
-//     {
-//         id: 7,
-//         title: "Futuristic Drone Asset",
-//         category: "Hard Surface",
-//         imageUrl: img7,
-//         size: "small",
-//     },
-//     {
-//         id: 8,
-//         title: "Desert Outpost Environment",
-//         category: "Environments",
-//         imageUrl: img8,
-//         size: "medium",
-//     },
-//     {
-//         id: 9,
-//         title: "Creature Bust",
-//         category: "Characters",
-//         imageUrl: img9,
-//         size: "small",
-//     },
-//     {
-//         id: 10,
-//         title: "Sci-Fi Corridor",
-//         category: "Environments",
-//         imageUrl: img10,
-//         size: "large",
-//     },
-//     {
-//         id: 11,
-//         title: "Robot Concept Model",
-//         category: "Hard Surface",
-//         imageUrl: img11,
-//         size: "medium",
-//     },
-//     {
-//         id: 12,
-//         title: "Fantasy Character",
-//         category: "Characters",
-//         imageUrl: img12,
-//         size: "medium",
-//     },
-//     {
-//         id: 13,
-//         title: "City Digital Twin",
-//         category: "Digital Twin",
-//         imageUrl: img13,
-//         size: "large",
-//     },
-//     {
-//         id: 14,
-//         title: "Mech Suit",
-//         category: "Hard Surface",
-//         imageUrl: img14,
-//         size: "small",
-//     },
-//     {
-//         id: 15,
-//         title: "Urban Scene Render",
-//         category: "Environments",
-//         imageUrl: img15,
-//         size: "small",
-//     },
-//     {
-//         id: 16,
-//         title: "Engineering Component",
-//         category: "Digital Twin",
-//         imageUrl: img16,
-//         size: "large",
-//     },
-// ];
+// Dynamically import all images from the renders folder
+const images = import.meta.glob('../assets/renders/*.{jpeg,jpg,png,webp}', { eager: true });
 
-const projects: Project[] = [
-    {
-        id: 1,
-        title: "Architectural Digital Twin",
-        category: "Digital Twin",
-        imageUrl: image3,
-        size: "large",
-    },
-    {
-        id: 2,
-        title: "Sci-Fi Weapon Asset",
-        category: "Hard Surface",
-        imageUrl: image6,
-        size: "small",
-    },
-    {
-        id: 3,
-        title: "Character Portrait",
-        category: "Characters",
-        imageUrl: image2,
-        size: "medium",
-    },
-    {
-        id: 4,
-        title: "Animation Reel",
-        category: "Animation",
-        imageUrl: image1,
-        size: "medium",
-    },
-    {
-        id: 5,
-        title: "Environment Concept",
-        category: "Environment",
-        imageUrl: image4,
-        size: "large",
-    },
-    {
-        id: 6,
-        title: "Object Scanner Setup",
-        category: "Tech / Scanning",
-        imageUrl: image5,
-        size: "small",
-    },
-];
+const generateProjects = (): Project[] => {
+    const groups: Record<string, string[]> = {};
+
+    // Group files by number (e.g. "1a.jpeg", "1b.jpeg" -> group "1")
+    Object.keys(images).forEach((path) => {
+        const filename = path.split('/').pop();
+        if (!filename) return;
+
+        // Match number at the start of the string
+        const match = filename.match(/^(\d+)/);
+        if (match) {
+            const num = match[1];
+            if (!groups[num]) {
+                groups[num] = [];
+            }
+            groups[num].push(path);
+        }
+    });
+
+    // Sort files within each group (to ensure a comes before b)
+    const groupArray = Object.values(groups).map(group => {
+        return group.sort((a, b) => {
+            const nameA = a.split('/').pop() || '';
+            const nameB = b.split('/').pop() || '';
+            return nameA.localeCompare(nameB, undefined, { numeric: true, sensitivity: 'base' });
+        });
+    });
+
+    // Shuffle the groups using Fisher-Yates shuffle
+    for (let i = groupArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [groupArray[i], groupArray[j]] = [groupArray[j], groupArray[i]];
+    }
+
+    // Flatten logic: 
+    const flattenedPaths = groupArray.flat();
+
+    let idCounter = 1;
+
+    return flattenedPaths.map((path) => {
+        const filename = path.split('/').pop() || '';
+        // @ts-ignore - Vite glob import type
+        const mod = images[path] as { default: string } | string;
+        const imageUrl = typeof mod === 'object' ? mod.default : mod;
+
+        // Pattern: Large (2x2), Small (1x1), Tall/Medium (1x2), Small (1x1)
+        // This layout repeats every 4 items to create the bento grid look
+        const pattern = ["large", "small", "medium", "medium", "large", "small"];
+        const size = pattern[(idCounter - 1) % pattern.length];
+
+        const nameWithoutExt = filename.replace(/\.[^/.]+$/, "");
+        const title = nameWithoutExt.includes('-')
+            ? nameWithoutExt.split('-').slice(1).join('-').trim()
+            : nameWithoutExt;
+
+        return {
+            id: idCounter++,
+            title: title,
+            category: "Render",
+            imageUrl: imageUrl,
+            size: size,
+        };
+    });
+};
+
+const projects = generateProjects();
 
 const INITIAL_COUNT = 4;
 
@@ -185,7 +88,11 @@ export const Gallery = () => {
     const hasMore = visibleCount < projects.length;
 
     const loadMore = () => {
-        setVisibleCount((prev) => Math.min(prev + 3, projects.length));
+        setVisibleCount((prev) => Math.min(prev + 8, projects.length));
+    };
+
+    const viewAll = () => {
+        setVisibleCount(projects.length);
     };
 
     const visibleProjects = projects.slice(0, visibleCount);
@@ -212,8 +119,8 @@ export const Gallery = () => {
                             project.size === "large"
                                 ? "col-span-2 row-span-2"
                                 : project.size === "medium"
-                                ? "col-span-2 md:col-span-1 row-span-2"
-                                : "col-span-1 row-span-1";
+                                    ? "col-span-2 md:col-span-1 row-span-2"
+                                    : "col-span-1 row-span-1";
 
                         return (
                             <motion.div
@@ -223,7 +130,7 @@ export const Gallery = () => {
                                 initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                transition={{ duration: 0.5, delay: (index % 10) * 0.1 }}
                                 whileHover={{
                                     y: -4,
                                     boxShadow: "var(--shadow-strong)",
@@ -255,7 +162,7 @@ export const Gallery = () => {
                 {/* Load More Button */}
                 {hasMore && (
                     <motion.div
-                        className="flex justify-center mt-12 md:mt-16"
+                        className="flex justify-center gap-4 mt-12 md:mt-16"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
@@ -265,6 +172,12 @@ export const Gallery = () => {
                             className="px-8 md:px-10 py-3 md:py-4 bg-white/5 text-white font-bold rounded-2xl hover:bg-white/10 transition-all duration-300 hover:rounded-3xl text-sm md:text-base"
                         >
                             Load More
+                        </button>
+                        <button
+                            onClick={viewAll}
+                            className="px-8 md:px-10 py-3 md:py-4 bg-white/5 text-white font-bold rounded-2xl hover:bg-white/10 transition-all duration-300 hover:rounded-3xl text-sm md:text-base"
+                        >
+                            View All
                         </button>
                     </motion.div>
                 )}
